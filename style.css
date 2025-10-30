@@ -1,0 +1,102 @@
+/* Base layout */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: "Times New Roman", Times, serif;
+  /* Comfortable default for phones; scales with the smaller viewport side */
+  font-size: clamp(18px, 5vmin, 28px);
+  line-height: 1.45;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Landscape phones: slightly smaller to fit more text lines */
+@media (orientation: landscape) and (max-width: 920px) {
+  body {
+    font-size: clamp(16px, 4.2vmin, 26px);
+    line-height: 1.5;
+  }
+}
+
+/* Tablets / desktops */
+@media (min-width: 768px) {
+  body {
+    font-size: clamp(18px, 2.2vmin, 24px);
+    line-height: 1.4;
+  }
+}
+
+#verseDisplay {
+  max-width: 92vw;
+  padding: 0 2vw;
+  white-space: pre-wrap;
+  opacity: 0;
+  animation-duration: 2s; /* slower, easier on the eyes */
+  animation-fill-mode: forwards;
+  transition: opacity 1.2s ease, transform 1.2s ease;
+  will-change: opacity, transform;
+  text-rendering: optimizeLegibility;
+}
+
+/* Slightly softer appearance */
+#verseDisplay.show {
+  animation-name: fadeInSmooth;
+}
+
+#verseDisplay.hide {
+  animation-name: fadeOutSmooth;
+}
+
+/* Motion safety */
+@media (prefers-reduced-motion: reduce) {
+  #verseDisplay {
+    animation-duration: 0.01s !important;
+    transition: none !important;
+  }
+}
+
+@keyframes fadeInSmooth {
+  from { opacity: 0; transform: translateY(14px); }
+  60% { opacity: 0.85; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOutSmooth {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-10px); }
+}
+
+#playBtn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.25);
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 0.75em 1.6em;
+  font-size: 1.25em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border-radius: 10px;
+  backdrop-filter: blur(2px);
+}
+
+#playBtn:hover, #playBtn:focus {
+  background: #fff;
+  color: #000;
+  outline: none;
+}
+
+#playBtn:active {
+  transform: translate(-50%, -50%) scale(0.98);
+}
