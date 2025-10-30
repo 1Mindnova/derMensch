@@ -1,9 +1,4 @@
-import json, zipfile, os
 
-# base path for corrected verses
-path = "/mnt/data/verses_fixed.json"
-
-# corrected sequence of verses (keeps same timing order as before)
 corrected = [
   {"start": 2.0, "end": 10.0, "text": "Der Kapitel was ich zitiere heißt: der Mensch – Al-Insan,\nund das ist der 76. Kapitel aus dem Kuran."},
   {"start": 10.0, "end": 14.0, "text": "Ich suche Schutz bei Gott, vor dem Teufel der verflucht ist."},
@@ -43,8 +38,3 @@ corrected = [
   {"start": 394.0, "end": 413.0, "text": "Er lässt jene in Seine Liebe und Barmherzigkeit herein, wer es selber will. Und für die Ungerechten hat Er eine schmerzhafte Strafe vorbereitet."}
 ]
 
-# write the corrected JSON
-with open(path, "w", encoding="utf-8") as f:
-    json.dump(corrected, f, ensure_ascii=False, indent=2)
-
-path
